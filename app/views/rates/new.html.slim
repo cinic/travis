@@ -1,0 +1,22 @@
+h1 New rating
+
+/== render 'form'
+ol
+	- if @d
+		- @d.each do |d|
+			li
+				| Название: 
+				= d[:c].html_safe
+				br
+				| Место: 
+				= d[:v]
+				br
+				| Категория: 
+				= d[:n]
+				br
+				| URL: 
+				= d[:u]
+				br
+
+
+/= link_to 'Back', rating_path

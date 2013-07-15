@@ -1,0 +1,13 @@
+h1 Rating#index
+p Find me in app/views/rating/index.html.slim
+
+/= form_tag({:action => "show"}, {:class => "train_account demo-account-form", :method => "get"}) do
+	/= select_tag "category", options_from_collection_for_select(@ratings, "id", "name")
+	/= submit_tag("Go")
+ol	
+	- @ratings.each do |item|
+		li
+			- item.name.gsub(/\r\n/, ': ') if item.name != nil
+			= link_to item.name, rating_path(item)
+
+= link_to 'New rate', new_rating_path

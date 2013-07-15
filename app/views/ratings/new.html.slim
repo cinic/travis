@@ -1,0 +1,24 @@
+h1 New rating
+
+/== render 'form'
+ol
+	- if @data
+		- @data.each do |d|
+			li
+				| Название: 
+				= d[:company].html_safe
+				br
+				| Место: 
+				= d[:place]
+				br
+				| Объём: 
+				= d[:volume]
+				br
+				| Объём: 
+				= d[:date]
+				br
+				| Объём: 
+				= d[:category]
+
+
+/= link_to 'Back', rating_path

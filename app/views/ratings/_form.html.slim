@@ -1,0 +1,5 @@
+= form_tag(new_rating_path, :method => "get") do
+	= select_tag "category", options_from_collection_for_select(@categories, "id", "name")
+	= select_month(Date.today - 1.month)
+	= select_year(Date.today, :start_year => 2008, :end_year => 2013)
+	.actions = submit_tag 'Go'

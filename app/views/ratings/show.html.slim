@@ -1,0 +1,21 @@
+h1 Rating
+
+/= simple_format(@rating.name.gsub(/\r\n/, '<br>'))
+h2 = @category.name.gsub(/\r\n/, '<br>').html_safe
+= form_tag(rating_path, {:method => "get", :id => "graph-data"}) do
+	
+	.actions
+		/= select_month(@month)
+		/= select_year(@year, :start_year => 2008, :end_year => 2013)
+		label.date-start Start date: 
+		= select_tag("date[start_month]", options_for_select(@m))
+		= select_tag("date[start_year]", options_for_select(@y))
+		label.date-start End date: 
+		= select_tag("date[end_month]", options_for_select(@m))
+		= select_tag("date[end_year]", options_for_select(@y))
+		= select_tag(:company, options_for_select(@c))
+		= submit_tag 'Go'
+
+
+.demo-container
+	#placeholder.demo-placeholder
