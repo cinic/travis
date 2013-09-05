@@ -8,9 +8,9 @@ class RatesController < ApplicationController
 		@category = Category.find(params[:id])
 		@rating = Hash.new()
 		@c = Array.new()
-		year = params[:year] || 2008
-		month = params[:month] || 1
-		pattern = params[:company] || "открытие"
+		year = params[:year]
+		month = params[:month]
+		pattern = params[:company]
 		@rate = Array.new()
 
 		@items = Rate.where(cat_id: params[:id])
@@ -60,8 +60,19 @@ class RatesController < ApplicationController
 
 		@rating = Rate.where(cat_id: params[:id], :y.gte => year, :m.gte => month).map_reduce(map, reduce).finalize(func).out(inline: true)
 		#@rt = @rating.where("_id.cm" => /pattern/ui)
+		@rate = { labels: [], data: [] }
 		@rating.each do |item|
-			@rate = {:label => item['_id']['c'], :data => item['value']['v']} if item['_id']['c'].strip === pattern
+			if pattern.is_a? Array
+				pattern.each do |i|
+					#@rate.push({ :label => item['_id']['c'], :data => item['value']['v'] }) if item['_id']['c'].strip === i
+					if item['_id']['c'].strip === i
+						@rate[:labels].push( item['_id']['c'] )
+						@rate[:data].push( item['value']['v'] )
+					end
+				end
+			else
+				@rate = { :label => item['_id']['c'], :data => item['value']['v'] } if item['_id']['c'].strip === pattern
+			end
 		end
 
 

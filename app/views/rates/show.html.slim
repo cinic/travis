@@ -10,7 +10,7 @@ h2 = @category.name.gsub(/\r\n/, '<br>').html_safe
 		label.date-start Start date: 
 		= select_tag("month", options_for_select(@m))
 		= select_tag("year", options_for_select(@y))
-		= select_tag("company", options_for_select(@c))
+		= select_tag("company", options_for_select(@c), multiple: true)
 		= submit_tag 'Go'
 
 

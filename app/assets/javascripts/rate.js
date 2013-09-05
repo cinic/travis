@@ -2,7 +2,7 @@
 // All this logic will automatically be available in application.js.
 // You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $(function() {
-	console.log(document.location.pathname + '.json?' + $( '#graph-data' ).serialize())
+	//console.log(document.location.pathname + '.json?' + $( '#graph-data' ).serialize())
 	$.getJSON(document.location.pathname + '.json?' + $( '#graph-data' ).serialize(), function(data) {
 			$( '#placeholder' ).empty();
 
@@ -26,7 +26,7 @@ $(function() {
 		e.preventDefault();
 		$.getJSON(document.location.pathname + '.json?' + $( '#graph-data' ).serialize(), function(data) {
 			$( '#placeholder' ).empty();
-			
+			console.log(data.lenght)
 			new Morris.Line({
 			  // ID of the element in which to draw the chart.
 			  element: 'placeholder',

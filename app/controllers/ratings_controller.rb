@@ -45,7 +45,7 @@ class RatingsController < ApplicationController
 		#end
 
 		Rails.logger.debug("Object: #{pattern}")
-		@rating[:items] = Rating.where(:category => params[:id], :company => /#{pattern}/ui)
+		@rating[:items] = Rating.where(:category => params[:id])
 		#@rating[:min_date] = params[:date] ? {:date => Date.new(params[:date]["start_year"].to_i, params[:date]["start_month"].to_i).end_of_month().to_time.to_i} : @rating[:items].min { |a,b| a[:date] <=> b[:date] }
 		#@rating[:max_date] = params[:date] ? {:date => Date.new(params[:date]["end_year"].to_i, params[:date]["end_month"].to_i).end_of_month().to_time.to_i} : @rating[:items].max { |a,b| a[:date] <=> b[:date] }
 		@rating[:min_date] = @rating[:items].min { |a,b| a[:date] <=> b[:date] }
