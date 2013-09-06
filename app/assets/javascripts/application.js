@@ -12,6 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require raphael.min
-//= require morris.0.4.3.min
+//= require jquery.flot
+//= require jquery.flot.time
 //= require_tree .

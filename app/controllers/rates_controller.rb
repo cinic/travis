@@ -32,10 +32,14 @@ class RatesController < ApplicationController
 
 		map = %Q{
 			function() {
+				var values = []
 				for ( var i in this.items) {
 
-					emit({c: this.items[i].c, cat: this.cat_id}, {d: this.y.toString() + '-' + this.m.toString(), v: this.items[i].v});
+					//emit({c: this.items[i].c, cat: this.cat_id}, {d:[this.y.toString() + '-' + this.m.toString(), this.items[i].v]});
+					emit(this.items[i].c, [new Date(this.y, this.m - 1, 1).getTime().toFixed(), this.items[i].v*1]);
+					//emit(this.items[i].c, [this.y.toString() + '-' + this.m.toString(), this.items[i].v*1]);
 				}
+				
 			}
 		}
 
@@ -43,35 +47,36 @@ class RatesController < ApplicationController
 			function(key, values) {
 				var res = [];
 				
-				for (var i in values) {
-					res.push([values[i].d, values[i].v])
-				}
 				
-				//return {v: res};
 				return {v: values};
 			}
 		}
 		func = %Q{
 			function(key, value) {
-				if(typeof value.v == 'string') value = {v: [{d: value.d, v: value.v}]};
+				Object.size = function(obj) {
+					var size = 0, key;
+					for (key in obj) {
+						if (obj.hasOwnProperty(key)) size++;
+					}
+					return size;
+				};
+				if(Object.size(value) == 1) value = value.v;
+				else value = [value];
+
 				return value;
 			}
 		}
 
 		@rating = Rate.where(cat_id: params[:id], :y.gte => year, :m.gte => month).map_reduce(map, reduce).finalize(func).out(inline: true)
 		#@rt = @rating.where("_id.cm" => /pattern/ui)
-		@rate = { labels: [], data: [] }
+		@rate = []
 		@rating.each do |item|
 			if pattern.is_a? Array
 				pattern.each do |i|
-					#@rate.push({ :label => item['_id']['c'], :data => item['value']['v'] }) if item['_id']['c'].strip === i
-					if item['_id']['c'].strip === i
-						@rate[:labels].push( item['_id']['c'] )
-						@rate[:data].push( item['value']['v'] )
-					end
+					@rate.push({ :label => item['_id'], :data => item['value'].sort }) if item['_id'] === i
 				end
 			else
-				@rate = { :label => item['_id']['c'], :data => item['value']['v'] } if item['_id']['c'].strip === pattern
+				@rate = { :label => item['_id'], :data => item['value'].sort } if item['_id'] === pattern
 			end
 		end
 
