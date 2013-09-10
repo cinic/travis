@@ -8,89 +8,89 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 categories = Category.create([{
 	name: "Ведущие операторы\r\nАкции: режим основных торгов",
-	url: "http://rts.micex.ru/ru/spot/members-rating.aspx?rid=104"
+	url: "http://moex.com/ru/spot/members-rating.aspx?rid=103"
 },
 {
 	name: "Ведущие операторы\r\nАкции: режим переговорных сделок",
-	url: "http://rts.micex.ru/ru/spot/members-rating.aspx?rid=104"
+	url: "http://moex.com/ru/spot/members-rating.aspx?rid=104"
 },
 {
 	name: "Ведущие операторы\r\nОбъем клиентских операций",
-	url: "http://rts.micex.ru/ru/spot/members-rating.aspx?rid=109"
+	url: "http://moex.com/ru/spot/members-rating.aspx?rid=109"
 },
 {
 	name: "Ведущие операторы\r\nЧисло активных клиентов",
-	url: "http://rts.micex.ru/ru/spot/members-rating.aspx?rid=110"
+	url: "http://moex.com/ru/spot/members-rating.aspx?rid=110"
 },
 {
 	name: "Ведущие операторы\r\nЧисло зарегистрированных клиентов",
-	url: "http://rts.micex.ru/ru/spot/members-rating.aspx?rid=111"
+	url: "http://moex.com/ru/spot/members-rating.aspx?rid=111"
 },
 {
 	name: "Ведущие операторы\r\nАкции: режим основных торгов T+",
-	url: "http://rts.micex.ru/ru/spot/members-rating.aspx?rid=115"
+	url: "http://moex.com/ru/spot/members-rating.aspx?rid=115"
 },
 {
 	name: "Ведущие операторы\r\nОбъем клиентских операций в режиме основных торгов Т+ и РПС с ЦК",
-	url: "http://rts.micex.ru/ru/spot/members-rating.aspx?rid=116"
+	url: "http://moex.com/ru/spot/members-rating.aspx?rid=116"
 },
 {
 	name: "Ведущие операторы\r\nОблигации: режим основных торгов и режим переговорных сделок",
-	url: "http://rts.micex.ru/ru/spot/members-rating.aspx?rid=112"
+	url: "http://moex.com/ru/spot/members-rating.aspx?rid=112"
 },
 {
 	name: "Ведущие операторы\r\nОФЗ: режим основных торгов и режим переговорных сделок",
-	url: "http://rts.micex.ru/ru/spot/members-rating.aspx?rid=113"
+	url: "http://moex.com/ru/spot/members-rating.aspx?rid=113"
 },
 {
 	name: "Ведущие операторы\r\nАкции: режим торгов РЕПО",
-	url: "http://rts.micex.ru/ru/spot/members-rating.aspx?rid=105"
+	url: "http://moex.com/ru/spot/members-rating.aspx?rid=105"
 },
 {
 	name: "Ведущие операторы\r\nОблигации: режим торгов РЕПО",
-	url: "http://rts.micex.ru/ru/spot/members-rating.aspx?rid=108"
+	url: "http://moex.com/ru/spot/members-rating.aspx?rid=108"
 },
 {
 	name: "Ведущие операторы\r\nОФЗ: режим торгов РЕПО",
-	url: "http://rts.micex.ru/ru/spot/members-rating.aspx?rid=114"
+	url: "http://moex.com/ru/spot/members-rating.aspx?rid=114"
 },
 {
 	name: "Лидеры рынка фьючерсов и опционов по объему сделок",
-	url: "http://rts.micex.ru/ru/derivatives/members-rating.aspx?rid=1"
+	url: "http://moex.com/ru/derivatives/members-rating.aspx?rid=1"
 },
 {
 	name: "Лидеры рынка опционов",
-	url: "http://rts.micex.ru/ru/derivatives/members-rating.aspx?rid=7"
+	url: "http://moex.com/ru/derivatives/members-rating.aspx?rid=7"
 },
 {
 	name: "Лидеры рынка фьючерсов и опционов по объему клиентских операций",
-	url: "http://rts.micex.ru/ru/derivatives/members-rating.aspx?rid=9"
+	url: "http://moex.com/ru/derivatives/members-rating.aspx?rid=9"
 },
 {
 	name: "Лидеры рынка фьючерсов и опционов по объему открытых позиций",
-	url: "http://rts.micex.ru/ru/derivatives/members-rating.aspx?rid=8"
+	url: "http://moex.com/ru/derivatives/members-rating.aspx?rid=8"
 },
 {
 	name: "Лидеры рынка фьючерсов и опционов по количеству активных клиентов",
-	url: "http://rts.micex.ru/ru/derivatives/members-rating.aspx?rid=10"
+	url: "http://moex.com/ru/derivatives/members-rating.aspx?rid=10"
 },
 {
 	name: "Лидеры рынка фьючерсов и опционов по приросту клиентов",
-	url: "http://rts.micex.ru/ru/derivatives/members-rating.aspx?rid=11"
+	url: "http://moex.com/ru/derivatives/members-rating.aspx?rid=11"
 },
 {
 	name: "Лидеры фондового рынка секции фьючерсов и опционов по объему сделок",
-	url: "http://rts.micex.ru/ru/derivatives/members-rating.aspx?rid=2"
+	url: "http://moex.com/ru/derivatives/members-rating.aspx?rid=2"
 },
 {
 	name: "Лидеры денежного рынка секции фьючерсов и опционов по объему сделок",
-	url: "http://rts.micex.ru/ru/derivatives/members-rating.aspx?rid=3"
+	url: "http://moex.com/ru/derivatives/members-rating.aspx?rid=3"
 },
 {
 	name: "Лидеры товарного рынка секции фьючерсов и опционов по объему сделок",
-	url: "http://rts.micex.ru/ru/derivatives/members-rating.aspx?rid=4"
+	url: "http://moex.com/ru/derivatives/members-rating.aspx?rid=4"
 },
 {
 	name: "Лидеры биржевого рынка срочных контрактов",
-	url: "http://rts.micex.ru/ru/derivatives/members-rating.aspx?rid=6"
+	url: "http://moex.com/ru/derivatives/members-rating.aspx?rid=6"
 }])

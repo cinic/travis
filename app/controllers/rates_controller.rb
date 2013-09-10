@@ -98,7 +98,7 @@ class RatesController < ApplicationController
 	def new
 		categories = Category.all
 		years = [2013]
-		months = [1,2,3,4,5]
+		months = [1,2,3,4,5,6,7,8]
 		@d = Array.new()
 		if params[:utf8] && params[:commit]
 			require "open-uri"
@@ -109,13 +109,12 @@ class RatesController < ApplicationController
 						@docs = Nokogiri::HTML(open(cat.url + '&month=' + month.to_s + '&year=' + year.to_s))
 						@docs.css(".table1 tr").each do |item|
 							place = item.css("td:nth-child(1)").text
-							name = item.css("td:nth-child(2)").text.gsub(/[U+00ABU+00BBU+0022«»"”]/, '')
+							name = item.css("td:nth-child(2)").text.gsub(/[U+00ABU+00BBU+0022«»"”]/, '').gsub(/\s{2,}/, ' ').strip
 							volume = item.css("td:nth-child(3)").text != '' ? item.css("td:nth-child(3)").text.gsub(/\D/, '') : nil
-							volume ||= place
 
 							#@data.push({ c: name.to_s.gsub(/[^\w\s\-\+]/, ''), v: volume.to_s.gsub(/\D/, '').to_i}) unless place == '' || name == ''
-							@data.push({ c: name.to_s, v: volume}) unless place == '' || name == ''
-							@d.push({ c: name.to_s, v: volume, u: cat.url + '&month=' + month.to_s + '&year=' + year.to_s, n: cat.name }) unless place == '' || name == ''
+							@data.push({ c: name.to_s, v: volume, p: place}) unless name == ''
+							#@d.push({ c: name.to_s, v: volume, u: cat.url + '&month=' + month.to_s + '&year=' + year.to_s, n: cat.name }) unless place == '' || name == ''
 							#@rating = Rating.create({:date => Date.new(year, month).end_of_month.to_time.to_i, :company => name.to_s.gsub(/[U+00ABU+00BBU+0022«»"”]/, "").strip, :place => place.to_i, :volume => volume.to_s.gsub(/\D/, '').to_i, :category => cat._id}) unless place == "" || name == ""
 							#Rails.logger.debug("My object: #{@rating.inspect}")
 
