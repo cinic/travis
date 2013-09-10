@@ -31,14 +31,6 @@ $(function() {
 		e.preventDefault();
 		$.getJSON(document.location.pathname + '.json?' + $( '#graph-data' ).serialize(), function(data) {
 			$( '#placeholder' ).empty();
-
-			if (data.lenght == 1) {
-				
-				//window.history.pushState({"html":document.html,"pageTitle":document.pageTitle},"", document.location.pathname + '?' + $( '#graph-data' ).serialize());
-			} else {
-				
-			}
-			console.log(data)
 			// jQuery Flot Chart
 			//var visits = [[1, 50], [2, 40], [3, 45], [4, 23],[5, 55],[6, 65],[7, 61],[8, 70],[9, 65],[10, 75],[11, 57],[12, 59]];
 			//var visitors = [[1, 25], [2, 50], [3, 23], [4, 48],[5, 38],[6, 40],[7, 47],[8, 55],[9, 43],[10,50],[11,47],[12, 39]];
@@ -74,7 +66,8 @@ $(function() {
 						mode: "time", 
 						minTickSize: [1, "month"],
 						timeformat: "%b %y",
-						monthNames: ['ЯНВ', 'ФЕВ', 'МАР', 'АПР', 'МАЙ', 'ИЮН', 'ИЮЛ', 'АВГ', 'СЕН', 'ОКТ', 'НОЯ', 'ДЕК']
+						monthNames: ['ЯНВ', 'ФЕВ', 'МАР', 'АПР', 'МАЙ', 'ИЮН', 'ИЮЛ', 'АВГ', 'СЕН', 'ОКТ', 'НОЯ', 'ДЕК'],
+						alignTicksWithAxis: true
 						
 					},
 					yaxis: {
@@ -108,12 +101,12 @@ $(function() {
 						previousPoint = item.dataIndex;
 
 						$("#tooltip").remove();
-						var x = item.datapoint[0].toFixed(0),
+						var x = new Date(item.datapoint[0]),
 							y = new Number(item.datapoint[1].toFixed(0));
-
 						//var month = item.series.xaxis.ticks[item.dataIndex].label;
+						
 						var month = item.datapoint[0].toFixed(0);
-						showTooltip(item.pageX, item.pageY, item.series.label + '<br>' + y.formatMoney(0, '', ' ') + ' руб.');
+						showTooltip(item.pageX, item.pageY, item.series.label + '<br>' + item.series.xaxis.options.monthNames[x.getMonth()] + ' ' + x.getFullYear() + '<br>' + y.formatMoney(0, '', ' ') + ' руб.');
 					}
 				}
 				else {

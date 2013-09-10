@@ -36,7 +36,7 @@ class RatesController < ApplicationController
 				for ( var i in this.items) {
 
 					//emit({c: this.items[i].c, cat: this.cat_id}, {d:[this.y.toString() + '-' + this.m.toString(), this.items[i].v]});
-					emit(this.items[i].c, [new Date(this.y, this.m - 1, 1).getTime().toFixed(), this.items[i].v*1]);
+					emit(this.items[i].c, [new Date(this.y, this.m - 1, 1).getTime().toFixed(0), this.items[i].v*1,this.items[i].p*1]);
 					//emit(this.items[i].c, [this.y.toString() + '-' + this.m.toString(), this.items[i].v*1]);
 				}
 				

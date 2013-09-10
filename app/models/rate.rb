@@ -4,4 +4,5 @@ class Rate
   field :y, type: Integer
   field :m, type: Integer
   field :items, type: Hash
+
 end
