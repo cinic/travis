@@ -5,14 +5,19 @@ h2 = @category.name.gsub(/\r\n/, '<br>').html_safe
 = form_tag(rate_path, {:method => "get", :id => "graph-data"}) do
 	
 	.actions
-		/= select_month(@month)
-		/= select_year(@year, :start_year => 2008, :end_year => 2013)
 		label.date-start Start date: 
-		= select_tag("month", options_for_select(@m))
-		= select_tag("year", options_for_select(@y))
-		= select_tag("company", options_for_select(@c), multiple: true)
+		= select_month(@month)
+		= select_year(@year, start_year: 2007)
+		= select_tag("company", options_for_select(@companies), multiple: true)
 		= submit_tag 'Go'
 
 
 .demo-container
 	#placeholder.demo-placeholder
+
+.data-container
+	- @rate.each do |item|
+		= item[:label]
+		br
+javascript:
+	var graphData = #{@rate.to_json.to_s.html_safe}
