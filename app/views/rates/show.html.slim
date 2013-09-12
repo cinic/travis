@@ -1,12 +1,9 @@
-h1 Rating
+h2.rating-title = @category.name.gsub(/\r\n/, '<br>').html_safe
 
-/= simple_format(@rating.name.gsub(/\r\n/, '<br>'))
-h2 = @category.name.gsub(/\r\n/, '<br>').html_safe
 = form_tag(rate_path, {:method => "get", :id => "graph-data"}) do
-	
 	.actions
-		label.date-start Start date: 
-		= select_month(@month)
+		label.date-start Начиная с: 
+		= select_month(@month, {use_month_names: %w(Январь Февраль Март Апрель Май Июнь Июль Август Сентябрь Октябрь Ноябрь Декабрь)}, {:class => "custom-select"})
 		= select_year(@year, start_year: 2007)
 		= select_tag("company", options_for_select(@companies), multiple: true)
 		= submit_tag 'Go'

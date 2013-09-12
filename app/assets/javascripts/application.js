@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require jquery.flot
 //= require jquery.flot.time
+//= require chosen.jquery
 //= require_tree .

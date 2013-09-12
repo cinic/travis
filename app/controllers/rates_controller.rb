@@ -1,7 +1,8 @@
 # coding: utf-8
 class RatesController < ApplicationController
 	def index
-		@cats = Category.all.sort!
+		@volumes = Category.where(type: "volume").sort!
+		@places = Category.where(type: "place").sort!
 	end
 
 	def show
