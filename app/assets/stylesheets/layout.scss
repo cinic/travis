@@ -21,6 +21,85 @@ h1,h2,h3,h4,h5 {
 }
 
 /*
+   Элементы форм
+   ========================================================================== */
+.btn {
+	display: inline-block;
+	padding: 6px 12px;
+	margin-bottom: 0;
+	font-size: 14px;
+	font-weight: normal;
+	line-height: 1.428571429;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	cursor: pointer;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+}   
+.btn {
+	border: 0;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	text-shadow: none;
+	background: #d6d9e0;
+
+	&.btn-primary {
+		color: #fff;
+		background-color: #36a9e1;
+		border-color: #357ebd;
+		&:hover {
+			color: #fff;
+			background-color: #1e8fc6;
+			border-color: #285e8e;
+		}
+	}
+}
+.select {
+	float: left;
+	margin-right: .5em;
+	width: 80px;
+	height: 32px;
+	font-size: 14px;
+	&.select--400 {
+		width: 60%;
+	}
+	.chosen-single {
+		padding-top: 4px;
+		height: 26px;
+		div b {
+			background-position: 0px 6px;
+		}
+	}
+	.chosen-choices {
+		border-radius: 5px;
+
+		li.search-choice {
+			padding-top: 4px;
+			padding-bottom: 5px;
+		}
+		li.search-field input[type="text"] {
+			height: 18px;
+		}
+	}
+}
+
+.label {
+	margin-right: .5em;
+	font-size: 14px;
+	line-height: 32px;
+	&.label--rating {
+		float: left;
+	}
+}
+
+/*
    Шапка
    ========================================================================== */
 .header {

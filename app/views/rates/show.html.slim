@@ -1,12 +1,12 @@
 h2.rating-title = @category.name.gsub(/\r\n/, '<br>').html_safe
 
-= form_tag(rate_path, {:method => "get", :id => "graph-data"}) do
+= form_tag(rate_path, {:method => 'get', :id => 'graph-data'}) do
 	.actions
-		label.date-start Начиная с: 
-		= select_month(@month, {use_month_names: %w(Январь Февраль Март Апрель Май Июнь Июль Август Сентябрь Октябрь Ноябрь Декабрь)}, {:class => "custom-select"})
-		= select_year(@year, start_year: 2007)
-		= select_tag("company", options_for_select(@companies), multiple: true)
-		= submit_tag 'Go'
+		label.date-start.label.label--rating Стартуем с: 
+		= select_month(@month, {use_month_names: %w(Январь Февраль Март Апрель Май Июнь Июль Август Сентябрь Октябрь Ноябрь Декабрь)}, {:class => 'select'})
+		= select_year(@year, {start_year: 2007}, {:class => 'select'})
+		= select_tag('company', options_for_select(@companies), {multiple: true, :class => 'select select--400'})
+		= submit_tag('Поехали!', {class: "btn btn-primary"})
 
 
 .demo-container
@@ -17,4 +17,7 @@ h2.rating-title = @category.name.gsub(/\r\n/, '<br>').html_safe
 		= item[:label]
 		br
 javascript:
+	$(function(){
+		$( 'select' ).chosen({disable_search: true, max_selected_options: 5, inherit_select_classes: true});
+	});
 	var graphData = #{@rate.to_json.to_s.html_safe}
