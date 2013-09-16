@@ -1,91 +1,29 @@
 # coding: utf-8
 class RatesController < ApplicationController
 	def index
-		@cats = Category.all
+		@volumes = Category.where(type: "volume").sort!
+		@places = Category.where(type: "place").sort!
 	end
 
 	def show
-		@category = Category.find(params[:id])
-		@rating = Hash.new()
-		@c = Array.new()
-		year = params[:year]
-		month = params[:month]
-		pattern = params[:company]
-		@rate = Array.new()
-
-		@items = Rate.where(cat_id: params[:id])
-		@y = @items.distinct(:y)
-		@m = @items.distinct(:m)
+		rating = Rate.new
+		cat_id = params[:id]
+		start_month = params[:date] != nil ? params[:date][:month] : Date.today.month - 1
+		start_year	= params[:date] != nil ? params[:date][:year] : Date.today.year
+		company = params[:company] || []
 
 
-		@items.each	do |d|
-			d.items.each do |i|
-				@c.push(i['c'].strip)
-			end
-		end
+		@category = Category.find(cat_id)
+		@companies = rating.get_companies(cat_id)
+		@rate = Array.new
 
-		@m.uniq!
-		@y.uniq!
-		@c.uniq!.sort!()
-		@m.sort!()
-		
+		@rating = rating.get_rating_data(cat_id, start_year, start_month, @category.type)
 
-		map = %Q{
-			function() {
-				var values = []
-				for ( var i in this.items) {
-
-					//emit({c: this.items[i].c, cat: this.cat_id}, {d:[this.y.toString() + '-' + this.m.toString(), this.items[i].v]});
-					emit(this.items[i].c, [new Date(this.y, this.m - 1, 1).getTime().toFixed(0), this.items[i].v*1,this.items[i].p*1]);
-					//emit(this.items[i].c, [this.y.toString() + '-' + this.m.toString(), this.items[i].v*1]);
-				}
-				
-			}
-		}
-
-		reduce = %Q{
-			function(key, values) {
-				var res = [];
-				
-				
-				return {v: values};
-			}
-		}
-		func = %Q{
-			function(key, value) {
-				Object.size = function(obj) {
-					var size = 0, key;
-					for (key in obj) {
-						if (obj.hasOwnProperty(key)) size++;
-					}
-					return size;
-				};
-				if(Object.size(value) == 1) value = value.v;
-				else value = [value];
-
-				return value;
-			}
-		}
-
-		@rating = Rate.where(cat_id: params[:id], :y.gte => year, :m.gte => month).map_reduce(map, reduce).finalize(func).out(inline: true)
-		#@rt = @rating.where("_id.cm" => /pattern/ui)
-		@rate = []
 		@rating.each do |item|
-			if pattern.is_a? Array
-				pattern.each do |i|
-					@rate.push({ :label => item['_id'], :data => item['value'].sort }) if item['_id'] === i
-				end
-			else
-				@rate = { :label => item['_id'], :data => item['value'].sort } if item['_id'] === pattern
+			company.each do |i|
+				@rate.push({ :label => item['_id'], :data => item['value'].sort }) if item['_id'] === i
 			end
 		end
-
-
-		#@rating = Rate.where(cat_id: params[:id], :y.gte => year, :m.gte => month)
-		#@rating[:min_date] = params[:date] ? {:date => Date.new(params[:date]["start_year"].to_i, params[:date]["start_month"].to_i).end_of_month().to_time.to_i} : @rating[:items].min { |a,b| a[:date] <=> b[:date] }
-		#@rating[:max_date] = params[:date] ? {:date => Date.new(params[:date]["end_year"].to_i, params[:date]["end_month"].to_i).end_of_month().to_time.to_i} : @rating[:items].max { |a,b| a[:date] <=> b[:date] }
-		#@rating[:min_date] = @rating[:items].min { |a,b| a[:date] <=> b[:date] }
-		#@rating[:max_date] = @rating[:items].max { |a,b| a[:date] <=> b[:date] }
 
 		respond_to do |format|
 			format.html
@@ -98,7 +36,7 @@ class RatesController < ApplicationController
 	def new
 		categories = Category.all
 		years = [2013]
-		months = [1,2,3,4,5,6,7,8]
+		months = [7,8]
 		@d = Array.new()
 		if params[:utf8] && params[:commit]
 			require "open-uri"
@@ -109,7 +47,7 @@ class RatesController < ApplicationController
 						@docs = Nokogiri::HTML(open(cat.url + '&month=' + month.to_s + '&year=' + year.to_s))
 						@docs.css(".table1 tr").each do |item|
 							place = item.css("td:nth-child(1)").text
-							name = item.css("td:nth-child(2)").text.gsub(/[U+00ABU+00BBU+0022«»"”]/, '').gsub(/\s{2,}/, ' ').strip
+							name = item.css("td:nth-child(2)").text.gsub(/[U+00ABU+00BBU+0022«»"”]/, '').gsub(/\s{2,}/, ' ').strip.mb_chars.upcase
 							volume = item.css("td:nth-child(3)").text != '' ? item.css("td:nth-child(3)").text.gsub(/\D/, '') : nil
 
 							#@data.push({ c: name.to_s.gsub(/[^\w\s\-\+]/, ''), v: volume.to_s.gsub(/\D/, '').to_i}) unless place == '' || name == ''

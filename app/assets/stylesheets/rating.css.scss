@@ -27,3 +27,28 @@
 	font-size: 14px;
 	line-height: 1.2em;
 }
+
+/*
+   Список доступных рейтингов
+   ========================================================================== */
+.ratings {
+	margin: 1em 0;
+}
+.ratings-list {
+	margin: 0;
+	padding: 0;
+
+	>li {
+		padding: 5px 0;
+		list-style: none;
+		border-top: 0;
+		border-bottom: 1px solid #eee;
+	}
+	a {
+		color: #428bca;
+		text-decoration: none;
+		&:hover {
+			color: #383e4b;
+		}
+	}
+}

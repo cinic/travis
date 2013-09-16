@@ -1,13 +1,17 @@
-h1 data#index
-p Find me in app/views/rating/index.html.slim
-
-/= form_tag({:action => "show"}, {:class => "train_account demo-account-form", :method => "get"}) do
-	/= select_tag "category", options_from_collection_for_select(@ratings, "id", "name")
-	/= submit_tag("Go")
-ol	
-	- @cats.each do |item|
-		li
-			- item.name.gsub(/\r\n/, ': ') if item.name != nil
-			= link_to item.name, rate_path(item)
-
-/= link_to 'New rate', new_rate_path
+.ratings.col--8.group
+	.box.box--float-left.box--margin-left.col--6-margin
+		h2.box__header Ведущие операторы
+		.box__content
+			ul.ratings-list
+				- @volumes.each do |item|
+					li.ratings-list__item
+						- item.name.gsub(/\r\n/, ': ') if item.name != nil
+						= link_to item.name, rate_path(item)
+	.box.box--float-left.box--margin-left.col--6-margin
+		h2.box__header Лидеры рынка
+		.box__content
+			ul.ratings-list
+				- @places.each do |item|
+					li.ratings-list__item
+						- item.name.gsub(/\r\n/, ': ') if item.name != nil
+						= link_to item.name, rate_path(item)
