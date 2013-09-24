@@ -68,8 +68,10 @@ function showTooltip(x, y, contents) {
 	}).appendTo("body").fadeIn(200);
 }
 $(function() {
-
-	var plot = $.plot($("#placeholder"), graphData, graphOptions);
+	//var graphData = graphData || undefined;
+	if (typeof graphData != "undefined") {
+		var plot = $.plot($("#placeholder"), graphData, graphOptions);
+	}
 
 	var previousPoint = null;
 	$("#placeholder").bind("plothover", function (event, pos, item) {
