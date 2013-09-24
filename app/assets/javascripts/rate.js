@@ -25,7 +25,7 @@ var graphOptions = {
 		},
 		grid: {
 			hoverable: true, 
-			//clickable: true, 
+			clickable: true, 
 			tickColor: "#f9f9f9",
 			borderWidth: 0
 		},
@@ -58,8 +58,8 @@ function showTooltip(x, y, contents) {
 	$('<div id="tooltip">' + contents + '</div>').css( {
 		position: 'absolute',
 		display: 'none',
-		top: y - 30,
-		left: x - 50,
+		top: y + 10,
+		left: x + 10,
 		color: "#fff",
 		padding: '2px 5px',
 		'border-radius': '6px',

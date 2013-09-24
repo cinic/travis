@@ -5,7 +5,7 @@ h2.rating-title = @category.name.gsub(/\r\n/, '<br>').html_safe
 		label.date-start.label.label--rating Стартуем с: 
 		= select_month(@month, {use_month_names: %w(Январь Февраль Март Апрель Май Июнь Июль Август Сентябрь Октябрь Ноябрь Декабрь)}, {:class => 'select'})
 		= select_year(@year, {start_year: 2007}, {:class => 'select'})
-		= select_tag('company', options_for_select(@companies), {multiple: true, :class => 'select select--400'})
+		= select_tag('company', options_for_select(@companies, :selected => params[:company]), {multiple: true, :class => 'select select--400', "data-placeholder" => "Выбираем компанию или несколько..."})
 		= submit_tag('Поехали!', {class: "btn btn-primary"})
 
 
