@@ -4,7 +4,6 @@ class RatesController < ApplicationController
 		@volumes = Category.where(type: "volume").sort!
 		@places = Category.where(type: "place").sort!
 	end
-
 	def show
 		rating = Rate.new
 		cat_id = params[:id]
