@@ -12,8 +12,7 @@ set :pty, true
 set :linked_files, %w{config/mongoid.yml}
 set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets public/upload}
 
-set :default_env, { rvm_bin_path: '~/.rvm/bin' }
-set :default_shell, '/bin/bash -l'
+set :default_env, { rvm_bin_path: '~/.rvm/bin:$PATH' }
 set :keep_releases, 3
 set :use_sudo, false
 
