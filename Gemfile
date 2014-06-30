@@ -1,40 +1,55 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.12'
+gem 'rails', '~>4.0.0'
 
-group :assets do
-	gem 'sass-rails',   '~> 3.2.3'
-	gem 'coffee-rails', '~> 3.2.1'
-	gem 'slim_assets', '~> 0.0.2'
-	gem 'jquery-rails'
-	gem 'modernizr-rails'
+gem 'sass-rails', '~> 4.0.0'
+gem 'coffee-rails', '~> 4.0.0'
+#gem 'slim_assets', '~> 0.0.2'
+gem 'slim-rails'
+gem 'jquery-rails'
+gem 'modernizr-rails'
 
-	# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-	# gem 'therubyracer', :platforms => :ruby
+# See https://github.com/sstephenson/execjs#readme for more supported runtimes
+# gem 'therubyracer', :platforms => :ruby
 
-	gem 'uglifier', '>= 1.0.3'
-	#gem 'nested_form'
-end
+gem 'uglifier', '>= 1.0.3'
+#gem 'nested_form'
 
-gem 'mongoid', '>= 3.0.3'
+gem 'mongoid', github: 'mongoid/mongoid'
 #gem 'mongoid_slug'
-gem 'slim-rails', '~> 1.1.0'
-#gem 'bson_ext'
+gem 'bson'
+gem 'bson_ext'
+gem 'actionpack-action_caching'
+gem 'actionpack-page_caching'
 #gem 'devise', '>= 2.1.2'
 #gem 'cancan'
 gem 'nokogiri'
 gem 'rack-rewrite'
 
+gem 'puma', :group => [:development, :test, :staging]
+gem 'foreman'
+
 group :development, :test do
-	gem 'rspec-rails'
-	gem 'cucumber-rails', :require => false
+  gem 'rspec'
+  gem 'rspec-rails', '~> 3.0.0.beta'
+  gem 'factory_girl_rails'
+  #gem 'mongoid-rspec', '>= 1.6.0', github: 'evansagge/mongoid-rspec'
+  gem 'email_spec'
+  gem 'fuubar'
+end
+
+# Use Capistrano for deployment
+group :development do
+  gem 'capistrano', '~> 3.0'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails', '~> 1.1'
+  gem 'capistrano-rvm', github: 'capistrano/rvm'
 end
 
 group :test do
+	gem 'faker'
 	gem 'capybara'
-	gem 'mongoid-rspec'
+	gem 'guard-rspec'
 	gem 'database_cleaner'
-	gem 'email_spec'
-	gem 'factory_girl_rails'
 	gem 'launchy'
 end

@@ -3,6 +3,8 @@ Travis::Application.configure do
 
   # Code is not reloaded between requests
   config.cache_classes = true
+  # Do not eager load code on boot.
+  config.eager_load = true
 
   # Full error reports are disabled and caching is turned on
   config.consider_all_requests_local       = false
@@ -61,7 +63,7 @@ Travis::Application.configure do
   config.i18n.fallbacks = true
 
   # Send deprecation notices to registered listeners
-  config.active_support.deprecation = :notify
+  config.active_support.deprecation = :log
 
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
