@@ -43,4 +43,7 @@ Travis::Application.configure do
 
   # Devise config
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+  Mongoid.logger.level = Logger::DEBUG
+  Moped.logger.level = Logger::DEBUG
 end

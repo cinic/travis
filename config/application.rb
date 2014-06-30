@@ -67,7 +67,7 @@ module Travis
 		# trailing slash
 		config.action_controller.default_url_options = { :trailing_slash => false }
 
-		config.middleware.insert_before(Rack::Lock, Rack::Rewrite) do
+		config.middleware.insert_before(Rack::Runtime, Rack::Rewrite) do
 			r301 %r{^/(.*)/$}, '/$1'
 		end
 		config.i18n.default_locale = :ru
