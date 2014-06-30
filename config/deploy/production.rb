@@ -1,6 +1,8 @@
 set :stage, :production
 set :rvm_type, :user
 set :deploy_to, '/home/cinic/travis/production'
+set :app_name, "travis_production"
+set :user, "cinic"
 
 # Simple Role Syntax
 # ==================
@@ -17,7 +19,7 @@ role :db,  %w{cinic@95.85.53.122}
 # definition into the server list. The second argument
 # something that quacks like a hash can be used to set
 # extended properties on the server.
-server '95.85.53.122', roles: %w{web app db}, my_property: :my_value
+server '95.85.53.122', user: 'cinic', roles: %w{web app db}, primary: :true
 
 # you can set custom ssh options
 # it's possible to pass any option but you need to keep in mind that net/ssh understand limited list of options
