@@ -1,1 +1,1 @@
-web: bundle exec puma -e production -S ~/puma -C /home/cinic/travis/production/current/config/puma.rb -b unix:///home/cinic/travis/production/current/tmp/sockets/travis.sock
+web: bundle exec puma -e production -C config/puma.rb -b unix:///home/cinic/travis/production/current/tmp/sockets/travis.sock
