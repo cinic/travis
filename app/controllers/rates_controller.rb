@@ -3,9 +3,6 @@ class RatesController < ApplicationController
 	def index
 		@volumes = Category.where(type: "volume").sort!
 		@places = Category.where(type: "place").sort!
-
-		logger.debug "New list: #{@places.inspect}"
-		logger.debug "New list2: #{@volumes.inspect}"
 	end
 	def show
 		rating = Rate.new
