@@ -26,7 +26,7 @@ gem 'actionpack-page_caching'
 gem 'nokogiri'
 gem 'rack-rewrite'
 
-gem 'puma', :group => [:development, :test, :staging]
+gem 'puma'
 gem 'foreman'
 
 group :development, :test do
